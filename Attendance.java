@@ -8,15 +8,33 @@
  *
  * @author KRISHNA
  */
+
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.text.*;
+import java.util.*;
+import javax.swing.JOptionPane;
 public class Attendance extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Attendance
-     */
+    
+    String p="P";
+    String a="A";
     public Attendance() {
         initComponents();
+        showDate();
     }
 
+    void showDate()
+    {
+       
+        SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy");
+         Date d = new Date();
+        today.setText(s.format(d));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,21 +44,174 @@ public class Attendance extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        submitbutton = new javax.swing.JButton();
+        das = new javax.swing.JCheckBox();
+        am = new javax.swing.JCheckBox();
+        dlda = new javax.swing.JCheckBox();
+        eccf = new javax.swing.JCheckBox();
+        dis = new javax.swing.JCheckBox();
+        oopm = new javax.swing.JCheckBox();
+        jLabel2 = new javax.swing.JLabel();
+        today = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Aparajita", 3, 18)); // NOI18N
+        jLabel1.setText("Attendance Page");
+
+        submitbutton.setText("Submit");
+        submitbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitbuttonActionPerformed(evt);
+            }
+        });
+
+        das.setText("DAS");
+
+        am.setText("AM III");
+
+        dlda.setText("DLDA");
+
+        eccf.setText("ECCF");
+        eccf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eccfActionPerformed(evt);
+            }
+        });
+
+        dis.setText("DIS");
+
+        oopm.setText("OOPM");
+
+        jLabel2.setText("Enter your attendance for ");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(196, 196, 196)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(210, 210, 210)
+                        .addComponent(submitbutton))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(26, 26, 26)
+                                .addComponent(today))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dis)
+                                    .addComponent(dlda)
+                                    .addComponent(das))
+                                .addGap(128, 128, 128)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(oopm)
+                                    .addComponent(eccf)
+                                    .addComponent(am))))))
+                .addContainerGap(167, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(today))
+                .addGap(44, 44, 44)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(am)
+                    .addComponent(das))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(eccf)
+                    .addComponent(dlda))
+                .addGap(9, 9, 9)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dis)
+                    .addComponent(oopm))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addComponent(submitbutton)
+                .addGap(47, 47, 47))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void eccfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eccfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eccfActionPerformed
+
+    private void submitbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitbuttonActionPerformed
+                try
+        {
+            Class.forName("java.sql.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_project", "root", "291099");
+          
+            
+            String sql= " insert into kunal (AM, DAS, DLDA, ECCF, DIS, OOPM) values (?, ?, ?, ?, ?, ?)";
+            PreparedStatement pst = con.prepareStatement(sql);
+            if(am.isSelected())
+            {
+                pst.setString(1, p);
+            }
+            if(das.isSelected())
+            {
+                pst.setString(2, p);
+            }
+            if(dlda.isSelected())
+            {
+                pst.setString(3, p);
+            }
+            if(eccf.isSelected())
+            {
+                pst.setString(4, p);
+            }
+            if(dis.isSelected())
+            {
+                pst.setString(5, p);
+            }
+            if(oopm.isSelected())
+            {
+                pst.setString(6, p);
+            }
+            
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Inserted Succesfully!");
+            
+            
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_submitbuttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +249,16 @@ public class Attendance extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox am;
+    private javax.swing.JCheckBox das;
+    private javax.swing.JCheckBox dis;
+    private javax.swing.JCheckBox dlda;
+    private javax.swing.JCheckBox eccf;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JCheckBox oopm;
+    private javax.swing.JButton submitbutton;
+    private javax.swing.JLabel today;
     // End of variables declaration//GEN-END:variables
 }
